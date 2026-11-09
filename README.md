@@ -2,9 +2,10 @@
 
 [![Latest release](https://img.shields.io/github/v/release/iamMD01/ei-erp-releases?include_prereleases&label=latest)](https://github.com/iamMD01/ei-erp-releases/releases)
 [![Channel](https://img.shields.io/badge/channel-alpha-blue)](https://github.com/iamMD01/ei-erp-releases/releases/download/channel-alpha/latest.json)
-[![Platform](https://img.shields.io/badge/platform-linux%20%7C%20deb-orange)](https://github.com/iamMD01/ei-erp-releases/releases)
+[![Linux](https://img.shields.io/badge/linux-deb-orange)](https://github.com/iamMD01/ei-erp-releases/releases)
+[![Windows](https://img.shields.io/badge/windows-nsis-blue)](https://github.com/iamMD01/ei-erp-releases/releases)
 
-Signed Linux desktop releases for **EI ERP**, a secure college ERP.
+Signed Linux and Windows desktop releases for **EI ERP**, a secure college ERP.
 
 > Source code is private. This repository contains **only signed release artifacts and update manifests**.
 
@@ -12,17 +13,22 @@ Signed Linux desktop releases for **EI ERP**, a secure college ERP.
 
 ## Download
 
-[**Latest alpha release**](https://github.com/iamMD01/ei-erp-releases/releases) — signed `.deb` for Debian / Ubuntu.
+- **Linux (Debian / Ubuntu):** `EI-ERP_<version>_amd64.deb`
+- **Windows:** `EI-ERP_<version>_x64-setup.exe`
+
+Open the [releases page](https://github.com/iamMD01/ei-erp-releases/releases) to download.
 
 ## Install (Debian / Ubuntu)
-
-1. Open the [releases page](https://github.com/iamMD01/ei-erp-releases/releases).
-2. Download `EI-ERP_<version>_amd64.deb`.
-3. Install it:
 
 ```bash
 sudo apt install ./EI-ERP_<version>_amd64.deb
 ```
+
+## Install (Windows)
+
+1. Download `EI-ERP_<version>_x64-setup.exe`.
+2. Run it. Alpha/beta builds are unsigned, so SmartScreen may warn:
+   **More info → Run anyway**.
 
 ## Auto-update
 
@@ -37,9 +43,9 @@ EI ERP checks the update manifest for its baked-in channel.
 How an update runs:
 
 1. The app fetches its channel manifest.
-2. It downloads the new signed `.deb`.
-3. It verifies the `.deb.sig` with the embedded updater public key.
-4. It installs through the system package manager (polkit/sudo prompt).
+2. It downloads the new signed installer for its platform.
+3. It verifies the `.sig` with the embedded updater public key.
+4. Linux installs the `.deb` through the package manager; Windows runs the NSIS installer.
 
 ## Verify
 
@@ -53,18 +59,17 @@ without its `.sig`.
 - **beta** — pilot staff; feature-complete but still testing.
 - **stable** — production.
 
-Alpha and beta releases are GitHub prereleases. Stable releases are full releases.
-
 ## Security
 
 - Only signed artifacts are published here.
 - The source code stays private.
 - The updater private key is never in this repository or in the app.
+- Windows alpha/beta installers are not Authenticode-signed; SmartScreen warns.
 
-## Linux package
+## Packages
 
-The current Linux package is `.deb`. AppImage is deferred until the
-AppImageLauncher/bundler issues are resolved.
+- **Linux:** `.deb`. AppImage is deferred until the AppImageLauncher/bundler issues are resolved.
+- **Windows:** NSIS `.exe`. MSI is not built because WiX requires a Windows runner.
 
 ## About EI ERP
 
