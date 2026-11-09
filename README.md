@@ -1,8 +1,18 @@
 # EI ERP — releases
 
+[![Latest release](https://img.shields.io/github/v/release/iamMD01/ei-erp-releases?include_prereleases&label=latest)](https://github.com/iamMD01/ei-erp-releases/releases)
+[![Channel](https://img.shields.io/badge/channel-alpha-blue)](https://github.com/iamMD01/ei-erp-releases/releases/download/channel-alpha/latest.json)
+[![Platform](https://img.shields.io/badge/platform-linux%20%7C%20deb-orange)](https://github.com/iamMD01/ei-erp-releases/releases)
+
 Signed Linux desktop releases for **EI ERP**, a secure college ERP.
 
 > Source code is private. This repository contains **only signed release artifacts and update manifests**.
+
+![EI ERP](assets/screenshot.png)
+
+## Download
+
+[**Latest alpha release**](https://github.com/iamMD01/ei-erp-releases/releases) — signed `.deb` for Debian / Ubuntu.
 
 ## Install (Debian / Ubuntu)
 
@@ -24,8 +34,12 @@ EI ERP checks the update manifest for its baked-in channel.
 | `beta` | pilot staff | created at the first beta release |
 | `stable` | whole college | created at the first stable release |
 
-Updates are downloaded and verified with the updater public key before installation.
-`.deb` updates ask for your admin password (polkit/sudo).
+How an update runs:
+
+1. The app fetches its channel manifest.
+2. It downloads the new signed `.deb`.
+3. It verifies the `.deb.sig` with the embedded updater public key.
+4. It installs through the system package manager (polkit/sudo prompt).
 
 ## Verify
 
@@ -51,3 +65,8 @@ Alpha and beta releases are GitHub prereleases. Stable releases are full release
 
 The current Linux package is `.deb`. AppImage is deferred until the
 AppImageLauncher/bundler issues are resolved.
+
+## About EI ERP
+
+Desktop-first, role-based college ERP for one university. Built with Tauri v2,
+TypeScript, Rust, and Supabase.
